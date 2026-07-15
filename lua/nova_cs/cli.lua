@@ -30,8 +30,9 @@ end
 
 M.build = function()
     local vendor = cfg.options.cli_repo_dir
+    local git_dir = vim.fs.joinpath(vendor, ".git")
 
-    if vim.fn.isdirectory(vendor) == 0 then
+    if vim.fn.isdirectory(git_dir) == 0 then
         vim.system({
             "git",
             "clone",
@@ -62,10 +63,6 @@ M.build = function()
             end
         end)
     end
-end
-
-M.update = function()
-    M.build()
 end
 
 M.compile = function()

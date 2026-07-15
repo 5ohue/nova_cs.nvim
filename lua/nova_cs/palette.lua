@@ -10,7 +10,7 @@ M.current_palette_table = {}
 
 M.palettes = {}
 
-M.setup = function()
+M.init = function()
     M.current_file = vim.fs.joinpath(cfg.options.palette_dir, "config.json")
 
     M.palettes = {}
@@ -44,7 +44,7 @@ end
 M.build = function()
     local function get_plugin_root()
         local source = debug.getinfo(1, "S").source:sub(2) -- path to init.lua
-        -- Walk up directories to reach the repository root: lua/soh_notes/init.lua -> 3 levels up
+        -- Walk up directories to reach the repository root: lua/nova_cs/init.lua -> 3 levels up
         return vim.fs.dirname(vim.fs.dirname(vim.fs.dirname(source)))
     end
 
@@ -61,7 +61,7 @@ M.build = function()
         end
     end
 
-    M.setup()
+    M.init()
 end
 
 -- Generating palettes --------------------------------------------------------

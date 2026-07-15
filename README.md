@@ -8,8 +8,6 @@ A palette is generated from a simple terminal colorscheme (compatible with Alacr
 
 This allows you to very simply change the appearance of your editor by only having to manipulate 14 colors!
 
----
-
 ## Features
 
 - Generate nova_cs palettes from Alacritty-compatible TOML themes
@@ -18,15 +16,11 @@ This allows you to very simply change the appearance of your editor by only havi
 - Store multiple palettes
 - Instant palette switching
 
----
-
 ## Requirements
 
 - Neovim 0.10+
 - Rust toolchain (Cargo) - required to compile the CLI binary
 - [Telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) (optional, for palette picker with live preview)
-
----
 
 ## Installation
 
@@ -36,8 +30,8 @@ Using **lazy.nvim**:
 -- lazy.nvim
 {
     "5ohue/nova_cs.nvim",
-    build = function()
-        require("nova_cs").build()
+    build = function(plugin)
+        require("nova_cs").build(plugin.opts or {})
     end,
     -- If setup runs earlier than some plugins (like bufferline), it may cause problems
     priority = 1000,
@@ -46,8 +40,6 @@ Using **lazy.nvim**:
     },
 }
 ```
-
----
 
 ## Configuration
 
@@ -76,8 +68,6 @@ Using **lazy.nvim**:
 }
 ```
 
----
-
 ## Commands
 
 ### Generate a palette
@@ -100,8 +90,6 @@ Specify the palette name:
 :NovaCS generate theme.toml my_theme
 ```
 
----
-
 ### Preview a palette
 
 Preview the current buffer:
@@ -117,8 +105,6 @@ Preview a file:
 ```
 
 The preview is temporary, does not overwrite the current palette and won't be saved.
-
----
 
 ### Select a palette
 
@@ -136,8 +122,6 @@ Or directly choose one:
 
 The selected palette becomes the default and will persist after you restart neovim.
 
----
-
 ### Delete a palette
 
 Interactive:
@@ -152,8 +136,6 @@ Directly:
 :NovaCS delete breeze
 ```
 
----
-
 ### Show current palette
 
 ```vim
@@ -165,15 +147,11 @@ Will print something like:
 [nova_cs] Current palette is everforest
 ```
 
----
-
 ### Change colorscheme
 
 ```vim
 :NovaCS theme soup_nova
 ```
-
----
 
 ## NovaCS-compatible colorschemes
 
@@ -186,8 +164,6 @@ local p = require("nova_cs.palette").get_current_palette_table()
 The colorscheme does **not** contain any hardcoded colors. Instead, it builds all highlight groups from the active NovaCS palette. This allows changing the entire appearance of the colorscheme simply by selecting another palette.
 
 Currently the only NovaCS-compatible colorscheme is [soup_nova](https://github.com/5ohue/soup_nova.nvim). If you want to create your own one, you can fork and play with it as a starting point! I suggest adding a `_nova` suffix to your colorscheme name to indicate that it is NovaCS-compatible.
-
----
 
 ## Palette storage
 

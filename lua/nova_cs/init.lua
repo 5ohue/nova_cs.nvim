@@ -7,24 +7,17 @@ local palette = require("nova_cs.palette")
 
 M.setup = function(user_options)
     cfg.setup(user_options)
-    palette.setup()
-
-    -- Ensure binary exists
-    if not cli.has_binary() then
-        M.build()
-    end
+    palette.init()
 end
 
-M.build = function()
+M.build = function(user_options)
+    cfg.setup(user_options)
+
     vim.fn.mkdir(cfg.options.palette_dir, "p")
     vim.fn.mkdir(vim.fs.dirname(cfg.options.cli_repo_dir), "p")
 
-    cli.build()
     palette.build()
-end
-
-M.update = function()
-    cli.update()
+    cli.build()
 end
 
 -- Commands -------------------------------------------------------------------
