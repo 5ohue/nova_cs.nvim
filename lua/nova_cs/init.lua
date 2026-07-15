@@ -60,7 +60,7 @@ local function palette_picker(prompt, on_select, on_move, on_exit)
         layout_strategy = "center",
         layout_config = {
             width = 35,
-            height = math.min(#palette.palettes + 2, 15),
+            height = math.min(#palette.palettes + 4, 15),
         },
     }, {
         prompt_title = prompt or "NovaCS Palettes",
