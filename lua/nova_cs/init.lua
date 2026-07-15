@@ -8,6 +8,10 @@ local palette = require("nova_cs.palette")
 M.setup = function(user_options)
     cfg.setup(user_options)
     palette.init()
+
+    if not cli.has_binary() then
+        cli.build()
+    end
 end
 
 M.build = function(user_options)

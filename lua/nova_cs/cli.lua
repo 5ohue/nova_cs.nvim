@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 
-local M = {}
+local M = { _building = false }
 local cfg = require("nova_cs.config")
 
 -- Ensure the CLI -------------------------------------------------------------
@@ -29,6 +29,11 @@ M.has_binary = function()
 end
 
 M.build = function()
+    if M._building then
+        return
+    end
+    M._building = true
+
     local vendor = cfg.options.cli_repo_dir
     local git_dir = vim.fs.joinpath(vendor, ".git")
 
