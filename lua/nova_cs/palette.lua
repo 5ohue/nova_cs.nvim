@@ -95,6 +95,7 @@ M.generate_from_text = function(palette_name, text)
             end)
             if not vim.tbl_contains(M.palettes, palette_name) then
                 table.insert(M.palettes, palette_name)
+                table.sort(M.palettes)
             end
         else
             vim.schedule(function()

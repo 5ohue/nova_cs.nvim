@@ -142,7 +142,7 @@ M.generate = function(args)
     local palette_name = ""
     if not args[1] or args[1] == '%' then
         local buf_name = vim.api.nvim_buf_get_name(0)
-        palette_name = vim.fn.fnamemodify(buf_name, ":t:r")
+        palette_name = args[2] or vim.fn.fnamemodify(buf_name, ":t:r")
         text = get_cur_buf_text()
     else
         palette_name = args[2] or vim.fn.fnamemodify(args[1], ":t:r")
